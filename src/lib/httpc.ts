@@ -21,6 +21,7 @@ export interface Config {
   baseURL?: string;
   tokenKey?: string;
   unauthorize?: () => void;
+  withCredentials?: boolean;
 }
 
 export interface Options {
@@ -43,6 +44,7 @@ export class HttpClient {
     }
     this.instance = axios.create({
       baseURL: config.baseURL ?? window.location.origin,
+      withCredentials: config.withCredentials ?? false,
     });
 
     this.setupInterceptors();
@@ -67,8 +69,9 @@ export class HttpClient {
     this.instance.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error.response?.status === httpStatusCode.UNAUTHORIZED)
+        if (error.response?.status === httpStatusCode.UNAUTHORIZED) {
           this.unauthorize?.();
+        }
         return Promise.reject(error);
       },
     );

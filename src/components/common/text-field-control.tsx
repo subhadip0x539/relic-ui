@@ -6,6 +6,7 @@ import {
   type FieldValues,
   type Path,
 } from "react-hook-form";
+import { cn } from "@/lib/utils";
 
 interface TextFieldControlProps<T extends FieldValues> {
   control: Control<T>;
@@ -14,12 +15,22 @@ interface TextFieldControlProps<T extends FieldValues> {
   description?: string;
   placeholder?: string;
   disabled?: boolean;
+  adornment?: React.ReactNode;
+  visible?: boolean;
 }
 
 export function TextFieldControl<T extends FieldValues>(
   props: TextFieldControlProps<T>,
 ) {
-  const { name, control, label, disabled, placeholder } = props;
+  const {
+    name,
+    control,
+    label,
+    disabled,
+    placeholder,
+    adornment,
+    visible = true,
+  } = props;
 
   return (
     <Field>
@@ -29,14 +40,22 @@ export function TextFieldControl<T extends FieldValues>(
         control={control}
         render={({ field, fieldState }) => (
           <>
-            <Input
-              id={name}
-              placeholder={placeholder}
-              className="rounded-sm"
-              value={field.value}
-              disabled={disabled}
-              onChange={(e) => field.onChange(e.target.value)}
-            />
+            <div className="relative">
+              <Input
+                id={name}
+                placeholder={placeholder}
+                className={cn("rounded-sm", adornment && "pr-8")}
+                type={visible ? "text" : "password"}
+                value={field.value}
+                disabled={disabled}
+                onChange={(e) => field.onChange(e.target.value)}
+              />
+              {adornment && (
+                <div className="absolute inset-y-0 right-0 flex items-center px-2.5">
+                  {adornment}
+                </div>
+              )}
+            </div>
             {fieldState.error && (
               <FieldError className="text-sx text-red-500">
                 {fieldState.error.message}

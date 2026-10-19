@@ -8,6 +8,11 @@ export const endpoint = {
   [queryKey.APP_INDEX_GET_WORKSPACES]: "/v1/workspaces",
   [queryKey.APP_INDEX_GET_ENVIRONMENTS]: "/v1/environments/all",
 
+  [queryKey.APP_AUTH_GET_ME]: "http://localhost:8081/v1/auth/me",
+  [queryKey.APP_AUTH_LOGIN]: "/v1/auth/login",
+  [queryKey.APP_AUTH_LOGOUT]: "/v1/auth/logout",
+  [queryKey.APP_AUTH_REFRESH]: "/v1/auth/refresh",
+
   [queryKey.ENVIRONMENT_SERVICES_GET_SERVICES]: "/v1/services/all",
 
   [queryKey.ENVIRONMENT_FLAGS_GET_FLAGS]: "/v1/flags/all",

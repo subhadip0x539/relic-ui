@@ -52,14 +52,17 @@ export function Content(props: ContentProps) {
 
   const { workspaceId, environmentId } = useParams();
 
-  const { data: services, isLoading: isGetServicesLoading } =
-    useGetServicesQuery(
-      { environmentId },
-      {
-        enabled: !!(workspaceId && environmentId),
-        queryKey: [queryKey.ENVIRONMENT_SERVICES_GET_SERVICES],
-      },
-    );
+  const { data: services } = useGetServicesQuery(
+    { environmentId },
+    {
+      enabled: !!(workspaceId && environmentId),
+      queryKey: [
+        queryKey.ENVIRONMENT,
+        queryKey.ENVIRONMENT_SERVICES,
+        queryKey.ENVIRONMENT_SERVICES_GET_SERVICES,
+      ],
+    },
+  );
 
   const { mutate: createFlag, isPending: isCreateFlagPending } = usecreateFlag({
     onSuccess: () => {
@@ -87,10 +90,6 @@ export function Content(props: ContentProps) {
   };
 
   const type = form.watch("type");
-
-  console.log(type);
-
-  if (isGetServicesLoading) return <div className="h-126"></div>;
 
   return (
     <form

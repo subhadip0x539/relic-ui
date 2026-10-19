@@ -1,10 +1,10 @@
 import { useConfig } from "./config-provider";
 import { createContext, useContext } from "react";
 import { HttpClient } from "@/lib/httpc";
+import { useAuth } from "./auth-provider";
 
 export interface IThemeProviderProps {
   children: React.ReactNode;
-  client?: HttpClient;
 }
 
 const initialState = new HttpClient();
@@ -12,15 +12,16 @@ const initialState = new HttpClient();
 export const HttpClientContext = createContext<HttpClient>(initialState);
 
 export function HttpClientProvider(props: Readonly<IThemeProviderProps>) {
-  const { children, client } = props;
+  const { children } = props;
   const config = useConfig();
+  const { logout } = useAuth();
 
   return (
     <HttpClientContext.Provider
       value={
-        client ||
         new HttpClient({
           baseURL: config.api.baseURL,
+          unauthorize: () => logout(),
         })
       }
     >

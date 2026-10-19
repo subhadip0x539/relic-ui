@@ -2,6 +2,7 @@ import { Outlet, type RouteObject } from "react-router-dom";
 import { AppLayout } from "@/app/layout";
 import { Error } from "@/app/error";
 import { PortalLayout } from "@/app/portal/layout";
+import { LoginLayout } from "@/app/login/layout";
 
 export const routes: RouteObject[] = [
   {
@@ -9,6 +10,19 @@ export const routes: RouteObject[] = [
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
+      {
+        path: "login",
+        element: <LoginLayout />,
+        children: [
+          {
+            path: "",
+            async lazy() {
+              const { Login } = await import("@/app/login/page");
+              return { Component: Login };
+            },
+          },
+        ],
+      },
       {
         path: "portal",
         element: <PortalLayout />,

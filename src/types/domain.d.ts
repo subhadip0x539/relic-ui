@@ -29,3 +29,10 @@ export type ApiKey = {
   id: string;
   service: Service;
 };
+
+export type Me = {
+  username: string;
+  fname: string;
+  lname: string;
+  avatar?: string;
+};

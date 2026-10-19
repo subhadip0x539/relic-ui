@@ -13,6 +13,8 @@ import { useParams } from "@/providers/router-provider";
 import { Spinner } from "@/components/ui/spinner";
 import { useQueryClient } from "@/providers/query-client-provider";
 import { queryKey } from "@/constants/query-key.const";
+import { notify } from "@/providers/toaster-provider";
+import { isAxiosError } from "axios";
 
 export const FormSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -57,9 +59,16 @@ export function Content(props: ContentProps) {
         });
         close?.();
       },
+      onError: (error) => {
+        console.error(error);
+        notify.error(
+          isAxiosError(error) ? error.response?.data?.detail : error.message,
+        );
+      },
     });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    console.log(data);
     if (workspaceId) {
       createEnvironment({
         name: data.name,

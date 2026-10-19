@@ -12,7 +12,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { useGetServicesQuery } from "@/services/http/environment/services";
 import { queryKey } from "@/constants/query-key.const";
 import { useCreateApiKey } from "@/services/http/environment/api-keys/create-api-key";
-import { toast } from "sonner";
 import { notify } from "@/providers/toaster-provider";
 
 export const FormSchema = z.object({

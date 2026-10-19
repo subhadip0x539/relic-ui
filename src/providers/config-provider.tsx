@@ -1,25 +1,28 @@
+import { defaults } from "@/constants/defaults.const";
 import { ConfigBuilder } from "@/lib/config";
 import type { Config } from "@/types/config";
 import { createContext, useContext } from "react";
 
 interface ConfigProviderProps {
   children: React.ReactNode;
-  config?: Config;
 }
 
 const initialState: Config = {
   api: {
     baseURL: window.location.origin,
   },
+  auth: {
+    refreshWindowMs: defaults.AUTH_REFRESH_WINDOW_MS,
+  },
 };
 
 export const ConfigContext = createContext<Config>(initialState);
 
 export function ConfigProvider(props: Readonly<ConfigProviderProps>) {
-  const { children, config } = props;
+  const { children } = props;
 
   return (
-    <ConfigContext.Provider value={config ?? new ConfigBuilder().env().build()}>
+    <ConfigContext.Provider value={new ConfigBuilder().env().build()}>
       {children}
     </ConfigContext.Provider>
   );

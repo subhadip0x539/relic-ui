@@ -13,6 +13,7 @@ export const createEnvironment = async (
   const response = await httpc.post<Response>(
     endpoint.APP_INDEX_CREATE_ENVIRONMENT,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

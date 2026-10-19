@@ -8,7 +8,11 @@ import { useHttpClient } from "@/providers/http-client-provider";
 import { endpoint } from "@/constants/endpoint.const";
 
 export const getWorkspaces = async (httpc: HttpClient) => {
-  const response = await httpc.get<Response>(endpoint.APP_INDEX_GET_WORKSPACES);
+  const response = await httpc.get<Response>(
+    endpoint.APP_INDEX_GET_WORKSPACES,
+    undefined,
+    { auth: true },
+  );
   const data = parse(response.data);
 
   return data;

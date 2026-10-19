@@ -38,7 +38,7 @@ export function SelectFieldControl<T extends FieldValues>(
       options.filter((o) =>
         o.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
       ),
-    [search],
+    [search, options],
   );
 
   return (

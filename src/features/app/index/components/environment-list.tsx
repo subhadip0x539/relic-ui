@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import type { Environment } from "@/types/domain";
 import { CreateEnvironment } from "./create-environment";
+import { useAuth } from "@/providers/auth-provider";
+import { permission } from "@/constants/permission.const";
 
 export interface EnvironmentListProps {
   selectedId?: string;
@@ -32,6 +34,7 @@ export function EnvironmentColor({ color }: { color: string }) {
 
 export function EnvironmentList(props: EnvironmentListProps) {
   const { environments = [], onClick, selectedId } = props;
+  const { claims } = useAuth();
 
   const handleClick = (service: Environment) => {
     onClick?.(service);
@@ -41,7 +44,11 @@ export function EnvironmentList(props: EnvironmentListProps) {
     <div className="flex flex-col flex-1">
       <div className="flex items-center gap-2 justify-between pr-2 pl-4 h-16">
         <span className="text-xs text-muted-foreground">ENVIRONMENTS</span>
-        <CreateEnvironment />
+        {claims?.can(permission.ENVIRONMENT_CREATE) ? (
+          <CreateEnvironment />
+        ) : (
+          <></>
+        )}
       </div>
       <div className="flex flex-col p-2 gap-1">
         {Object.values(environments).map((e) => (

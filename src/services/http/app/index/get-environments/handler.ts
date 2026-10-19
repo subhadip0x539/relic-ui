@@ -11,6 +11,7 @@ export const getEnvironments = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.APP_INDEX_GET_ENVIRONMENTS,
     payload,
+    { auth: true },
   );
   const data = parse(response.data);
 

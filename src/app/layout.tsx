@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/providers/auth-provider";
 import { ConfigProvider } from "@/providers/config-provider";
 import { HttpClientProvider } from "@/providers/http-client-provider";
 import { QueryClientProvider } from "@/providers/query-client-provider";
@@ -10,13 +11,15 @@ export function AppLayout() {
     <ConfigProvider>
       <StoreProvider>
         <QueryClientProvider>
-          <HttpClientProvider>
-            <ToasterProvider>
-              <div className="h-screen w-screen bg-background text-foreground">
-                <Outlet />
-              </div>
-            </ToasterProvider>
-          </HttpClientProvider>
+          <AuthProvider>
+            <HttpClientProvider>
+              <ToasterProvider>
+                <div className="h-screen w-screen bg-background text-foreground">
+                  <Outlet />
+                </div>
+              </ToasterProvider>
+            </HttpClientProvider>
+          </AuthProvider>
         </QueryClientProvider>
       </StoreProvider>
     </ConfigProvider>

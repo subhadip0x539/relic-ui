@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const ResponseSchema = z.object({
-  body: z.string(),
+  detail: z.string(),
 });
 
 export type Response = z.infer<typeof ResponseSchema>;
 
-export type ParsedResponse = Response["body"];
+export type ParsedResponse = Response["detail"];
 
 export type Request = {
   path: {
