@@ -1,13 +1,11 @@
 import { FlagTypeBadge } from "@/components/common/flag-type-badge";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { queryKey } from "@/constants/query-key.const";
 import { useQueryClient } from "@/providers/query-client-provider";
 import { useUpdateFlag } from "@/services/http/app/index/update-flag/handler";
 import type { Data } from "@/services/http/environment/flags/get-flags";
 import type { Flag } from "@/types/domain";
-import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
 
 export interface FlagCardsProps {
   data?: Data;

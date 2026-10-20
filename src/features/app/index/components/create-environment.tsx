@@ -14,7 +14,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { useQueryClient } from "@/providers/query-client-provider";
 import { queryKey } from "@/constants/query-key.const";
 import { notify } from "@/providers/toaster-provider";
-import { isAxiosError } from "axios";
 
 export const FormSchema = z.object({
   name: z.string().min(1, "Name is required"),
