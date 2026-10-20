@@ -11,6 +11,7 @@ export const getApiKeys = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.ENVIRONMENT_API_KEYS_GET_API_KEYS,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

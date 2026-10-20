@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import z from "zod";
 import { Spinner } from "@/components/ui/spinner";
-import { useGetServicesQuery } from "@/services/http/environment/services";
+import { useGetServicesQuery } from "@/services/http/environment/services/get-services";
 import { queryKey } from "@/constants/query-key.const";
 import { useCreateApiKey } from "@/services/http/environment/api-keys/create-api-key";
 import { notify } from "@/providers/toaster-provider";

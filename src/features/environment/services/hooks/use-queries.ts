@@ -1,6 +1,6 @@
 import { queryKey } from "@/constants/query-key.const";
 import { useParams } from "@/providers/router-provider";
-import { useGetServicesQuery } from "@/services/http/app/index/get-services";
+import { useGetServicesQuery } from "@/services/http/environment/services/get-services";
 
 export const useQueries = () => {
   const { workspaceId, environmentId } = useParams();
@@ -9,15 +9,18 @@ export const useQueries = () => {
     data: services,
     isLoading: isGetServicesLoading,
     isRefetching: isGetServicesRefetching,
-  } = useGetServicesQuery({
-    queryKey: [
-      queryKey.ENVIRONMENT,
-      queryKey.ENVIRONMENT_SERVICES,
-      queryKey.ENVIRONMENT_SERVICES_GET_SERVICES,
-      { workspaceId, environmentId },
-    ],
-    enabled: !!(environmentId && workspaceId),
-  });
+  } = useGetServicesQuery(
+    { environmentId },
+    {
+      queryKey: [
+        queryKey.ENVIRONMENT,
+        queryKey.ENVIRONMENT_SERVICES,
+        queryKey.ENVIRONMENT_SERVICES_GET_SERVICES,
+        { workspaceId, environmentId },
+      ],
+      enabled: !!(environmentId && workspaceId),
+    },
+  );
 
   const isLoading = isGetServicesLoading;
   const isRefetching = isGetServicesRefetching;

@@ -1,11 +1,13 @@
 import { FlagTypeBadge } from "@/components/common/flag-type-badge";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { queryKey } from "@/constants/query-key.const";
 import { useQueryClient } from "@/providers/query-client-provider";
 import { useUpdateFlag } from "@/services/http/app/index/update-flag/handler";
 import type { Data } from "@/services/http/environment/flags/get-flags";
 import type { Flag } from "@/types/domain";
+import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
 
 export interface FlagCardsProps {
   data?: Data;
@@ -23,24 +25,31 @@ export function FlagCard(props: FlagCardProps) {
       <div className="flex flex-col gap-4 flex-1">
         <div className="flex items-center justify-between gap-2">
           <span className="text-sm font-semibold truncate">{name}</span>
-          <Switch
-            checked={enabled}
-            onCheckedChange={(value) => toggle?.(value)}
-          />
+          <div className="flex items-center gap-1">
+            <Switch
+              checked={enabled}
+              onCheckedChange={(value) => toggle?.(value)}
+            />
+            {/* <Button size="icon-sm" className="rounded-full" variant="ghost">
+              <MoreHorizontal />
+            </Button> */}
+          </div>
         </div>
         {description && (
           <span className="text-xs text-muted-foreground">{description}</span>
         )}
       </div>
-      <div className="flex gap-1 items-center">
-        <FlagTypeBadge type={type} />
-        {value ? (
-          <Badge className="rounded-sm" variant="outline">
-            {value}
-          </Badge>
-        ) : (
-          <></>
-        )}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex gap-1 items-center">
+          <FlagTypeBadge type={type} />
+          {value ? (
+            <Badge className="rounded-sm" variant="outline">
+              {value}
+            </Badge>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );

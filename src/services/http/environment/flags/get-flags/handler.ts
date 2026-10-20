@@ -11,6 +11,7 @@ export const getFlags = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.ENVIRONMENT_FLAGS_GET_FLAGS,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

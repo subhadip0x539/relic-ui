@@ -14,7 +14,7 @@ import z from "zod";
 import { CheckboxControl } from "@/components/common/checkbox-control";
 import { usecreateFlag } from "@/services/http/app/index/create-flag/handler";
 import { Spinner } from "@/components/ui/spinner";
-import { useGetServicesQuery } from "@/services/http/environment/services";
+import { useGetServicesQuery } from "@/services/http/environment/services/get-services";
 import { queryKey } from "@/constants/query-key.const";
 
 export const FormSchema = z.object({

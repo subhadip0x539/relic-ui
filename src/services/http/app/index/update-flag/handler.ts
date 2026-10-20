@@ -11,6 +11,7 @@ export const updateFlag = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.patch<Response>(
     endpoint.APP_INDEX_UPDATE_FLAG,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

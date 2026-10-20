@@ -8,5 +8,5 @@ export const parse = (data: Response): ParsedResponse | null => {
     return null;
   }
 
-  return value.body;
+  return value.detail;
 };

@@ -10,6 +10,7 @@ export const createService = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.APP_INDEX_CREATE_SERVICE,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

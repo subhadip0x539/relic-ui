@@ -11,6 +11,7 @@ export const createFlag = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.APP_INDEX_CREATE_FLAG,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

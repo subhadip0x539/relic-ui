@@ -10,6 +10,7 @@ export const createApiKey = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.ENVIRONMENT_API_KEYS_CREATE_API_KEY,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

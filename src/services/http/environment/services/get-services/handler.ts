@@ -11,6 +11,7 @@ export const getServices = async (httpc: HttpClient, payload: Request) => {
   const response = await httpc.post<Response>(
     endpoint.ENVIRONMENT_SERVICES_GET_SERVICES,
     payload,
+    { auth: true },
   );
 
   const data = parse(response.data);

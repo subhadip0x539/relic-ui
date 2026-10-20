@@ -60,10 +60,7 @@ export function Content(props: ContentProps) {
         close?.();
       },
       onError: (error) => {
-        console.error(error);
-        notify.error(
-          isAxiosError(error) ? error.response?.data?.detail : error.message,
-        );
+        notify.error(error.message);
       },
     });
 

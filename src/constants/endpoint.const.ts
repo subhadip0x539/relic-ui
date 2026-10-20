@@ -6,6 +6,7 @@ export const endpoint = {
   [queryKey.APP_INDEX_CREATE_FLAG]: "/v1/flags",
   [queryKey.APP_INDEX_UPDATE_FLAG]: "/v1/flags/:flagId",
   [queryKey.APP_INDEX_GET_WORKSPACES]: "/v1/workspaces",
+  [queryKey.APP_INDEX_CREATE_WORKSPACE]: "/v1/workspaces",
   [queryKey.APP_INDEX_GET_ENVIRONMENTS]: "/v1/environments/all",
 
   [queryKey.APP_AUTH_GET_ME]: "http://localhost:8081/v1/auth/me",
